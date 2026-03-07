@@ -1,0 +1,10 @@
+[build]
+  command = "echo 'No build required'"
+  functions = "netlify/functions"
+  publish = "public"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[functions]
+  node_bundler = "esbuild"
