@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MYTREZURI – Store Value. Share Ideas. Grow Wealth.</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Paystack inline JS -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body>
+    <!-- Animated gradient background -->
+    <div class="gradient-bg"></div>
+    <!-- Particle background (retained) -->
+    <div id="particles"></div>
+
+    <!-- HEADER -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <a href="#" id="home-link">
+                    <img src="mytrezurilogo1.png" alt="MYTREZURI Logo" class="logo-img">
+                    <span class="logo-text">MYTREZURI</span>
+                </a>
+            </div>
+            <!-- Search bar (visible only when logged in) -->
+            <div id="search-container" style="display:none;">
+                <input type="text" id="search-input" placeholder="Search vault, users, marketplace...">
+                <button id="search-btn" class="btn">Search</button>
+            </div>
+            <nav id="main-nav"></nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- LANDING PAGE (visible when not logged in) -->
+        <section id="landing" class="active-view">
+            <div class="hero">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="glitch" data-text="Store Value. Share Ideas. Grow Wealth.">Store Value. Share Ideas. Grow Wealth.</h1>
+                        <p class="hero-sub">Your digital treasure vault for ideas, items, collaborations, and wealth.</p>
+                        <div class="hero-buttons">
+                            <a href="#" id="show-register" class="glowing-button btn-large">Open Your Vault</a>
+                            <a href="#features" class="btn-outline">Explore</a>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="floating-card">
+                            <div class="treasure-pot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Beta / Pioneer message -->
+            <div class="container" style="text-align: center; margin-top: -2rem;">
+                <span class="beta-badge">🚀 BETA TESTING – PIONEER BONUS AWAITS YOU!</span>
+            </div>
+
+            <section id="features" class="features">
+                <div class="container">
+                    <h2 class="section-title">The Treasure Ecosystem</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🏦</div>
+                            <h3>Digital Vault</h3>
+                            <p>Store ideas, projects, websites, videos, folders – anything.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔗</div>
+                            <h3>Referral Economy</h3>
+                            <p>Earn points and rewards by sharing MYTREZURI.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🤖</div>
+                            <h3>TREZURI AI</h3>
+                            <p>Your personal assistant for vault search, reminders, and coaching.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">✅</div>
+                            <h3>Productivity Suite</h3>
+                            <p>Track tasks, goals, and schedules with beautiful dashboards.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🤝</div>
+                            <h3>Collaboration Hub</h3>
+                            <p>Discover public items and collaborate with others.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💰</div>
+                            <h3>Monetization</h3>
+                            <p>Upgrade to premium with Paystack and unlock more.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="about-section">
+                <div class="container">
+                    <h2 class="section-title">About MYTREZURI</h2>
+                    <div class="about-content glass-panel">
+                        <p><strong>MYTREZURI</strong> is a next-generation digital platform designed to function as a <strong>personal treasure vault and collaborative productivity ecosystem</strong>. It enables individuals to securely store and manage their most valuable digital assets such as ideas, projects, documents, business opportunities, and creative content within a powerful, futuristic interface. Beyond simple storage, the platform integrates intelligent productivity tools, goal tracking, scheduling, and an AI assistant that helps users organize their activities, retrieve stored information instantly, and stay aligned with personal and professional targets. MYTREZURI transforms the concept of digital storage into a <strong>dynamic life-management hub</strong>, where users not only safeguard their intellectual assets but actively develop them.</p>
+                        <p style="margin-top:1rem;">At its core, MYTREZURI also introduces a <strong>referral-driven digital economy and collaboration marketplace</strong>. Users can share opportunities, showcase projects, discover ideas from others, and form collaborations while earning rewards through a built-in referral system and premium services. With integrated payment infrastructure, scalable architecture capable of supporting thousands of users, and a design philosophy centered on value creation, MYTREZURI positions itself as more than just a platform. It is a <strong>growing digital ecosystem where ideas, productivity, creativity, and economic opportunity converge</strong>, offering investors a scalable technology venture built around the emerging global demand for digital asset management, creator collaboration, and intelligent productivity platforms. 🚀</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Build Section -->
+            <section class="build-section">
+                <div class="container">
+                    <h2 class="section-title">How We Built It</h2>
+                    <div class="build-content">
+                        <p>We at <strong><a href="https://kranedigital-hub.netlify.app" target="_blank" style="color: var(--electric-blue);">Krane Digital Inc</a></strong> have built a fully static MYTREZURI website using HTML, CSS, and JavaScript. This version includes all core features: landing page, user dashboard, vault, referral system, Paystack payment integration (client‑side), simulated AI assistant, productivity widgets, collaboration marketplace, notifications, and a futuristic UI. When it started, it runs locally (even by just opening <code>index.html</code> in a browser) and later deployed to Netlify as a static site, with plans to upgrade to a full website. Data persistence is simulated with <code>localStorage</code>. No server‑side code is required, but we'll include placeholder PHP files for future backend expansion when the time is right to choose to use them.</p>
+                        <p style="margin-top:1rem;"><strong>For now, it's still at its testing/beta mode. Full changes will be communicated soon, and as a pioneer user, you get a large bonus awaiting you.</strong></p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- AUTH VIEWS (Login / Register) -->
+        <section id="auth-view" class="container hidden" style="max-width: 400px; margin: 2rem auto;">
+            <div class="glass-panel">
+                <div id="login-form">
+                    <h2>Login to Your Vault</h2>
+                    <form id="login">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="glowing-button" style="width:100%">Login</button>
+                    </form>
+                    <p style="margin-top:1rem; text-align:center;">Don't have an account? <a href="#" id="switch-to-register">Register</a></p>
+                </div>
+                <div id="register-form" style="display:none;">
+                    <h2>Create Your Vault</h2>
+                    <form id="register">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="reg-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Username (letters, numbers, underscore only)</label>
+                            <input type="text" id="reg-username" pattern="[a-zA-Z0-9_]+" title="Only letters, numbers, underscore" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="reg-fullname">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="reg-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Referral Code (optional)</label>
+                            <input type="text" id="reg-ref">
+                        </div>
+                        <button type="submit" class="glowing-button" style="width:100%">Register</button>
+                    </form>
+                    <p style="margin-top:1rem; text-align:center;">Already have an account? <a href="#" id="switch-to-login">Login</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- DASHBOARD VIEW (logged in) -->
+        <section id="dashboard-view" class="dashboard-view container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="vault-count">0</div>
+                    <div class="stat-label">Vault Items</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="task-count">0</div>
+                    <div class="stat-label">Pending Tasks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="referral-signups">0</div>
+                    <div class="stat-label">Referrals</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="points">0</div>
+                    <div class="stat-label">Points</div>
+                </div>
+            </div>
+
+            <div class="two-col">
+                <!-- Tasks Widget -->
+                <div class="glass-panel">
+                    <h3>Today's Tasks</h3>
+                    <ul id="task-list" style="list-style:none; margin-top:1rem;">
+                        <!-- dynamic -->
+                    </ul>
+                    <button class="btn" id="add-task-btn" style="margin-top:1rem;">+ Add Task</button>
+                </div>
+
+                <!-- Goals Widget -->
+                <div class="glass-panel">
+                    <h3>Goal Progress</h3>
+                    <div id="goals-list"></div>
+                </div>
+            </div>
+
+            <!-- AI Assistant -->
+            <div class="ai-assistant" style="margin-top:2rem;">
+                <div class="ai-header">
+                    <div class="ai-avatar"></div>
+                    <h3>TREZURI AI</h3>
+                </div>
+                <div class="ai-messages" id="ai-messages">
+                    <div class="message assistant">Hello! I'm your TREZURI AI. Ask me anything about your vault.</div>
+                </div>
+                <div class="ai-input">
+                    <input type="text" id="ai-input" placeholder="Ask me...">
+                    <button id="ai-send">➤</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- VAULT VIEW -->
+        <section id="vault-view" class="dashboard-view container">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
+                <h2>My Vault</h2>
+                <button class="glowing-button" id="new-vault-item">+ New Item</button>
+            </div>
+            <div id="vault-items" class="vault-grid">
+                <!-- dynamic -->
+            </div>
+        </section>
+
+        <!-- REFERRAL VIEW -->
+        <section id="referral-view" class="dashboard-view container">
+            <h2>Referral Program</h2>
+            <div class="glass-panel" style="margin:2rem 0;">
+                <p>Your referral link:</p>
+                <div style="display:flex; gap:0.5rem;">
+                    <input type="text" id="referral-link" readonly value="" style="flex:1; padding:0.5rem; background:rgba(0,0,0,0.5); border:1px solid var(--electric-blue); border-radius:8px; color:white;">
+                    <button class="btn" id="copy-link">Copy</button>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="total-clicks">0</div>
+                    <div class="stat-label">Clicks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="total-signups">0</div>
+                    <div class="stat-label">Signups</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="earned-points">0</div>
+                    <div class="stat-label">Points Earned</div>
+                </div>
+            </div>
+            <h3>Leaderboard</h3>
+            <div id="leaderboard" class="glass-panel"></div>
+        </section>
+
+        <!-- MARKETPLACE VIEW (now also shows users) -->
+        <section id="marketplace-view" class="dashboard-view container">
+            <h2>Collaboration Marketplace</h2>
+            <div class="vault-grid" id="marketplace-items"></div>
+            <h2 style="margin-top:2rem;">Community Members</h2>
+            <div id="user-directory" class="glass-panel" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1rem;"></div>
+        </section>
+
+        <!-- NOTIFICATIONS VIEW -->
+        <section id="notifications-view" class="dashboard-view container">
+            <h2>Notifications</h2>
+            <div id="notifications-list" class="glass-panel"></div>
+        </section>
+
+        <!-- CHAT VIEW (new) -->
+        <section id="chat-view" class="dashboard-view container">
+            <h2>Chat with Collaborators</h2>
+            <div id="chat-users" class="glass-panel" style="margin-bottom:1rem;">
+                <h3>Online Users</h3>
+                <div id="online-users"></div>
+            </div>
+            <div id="chat-messages" class="glass-panel" style="height:300px; overflow-y:auto;"></div>
+            <div style="display:flex; margin-top:1rem;">
+                <input type="text" id="chat-input" placeholder="Type a message..." style="flex:1; padding:0.5rem;">
+                <button id="chat-send" class="btn">Send</button>
+            </div>
+        </section>
+
+        <!-- SETTINGS VIEW -->
+        <section id="settings-view" class="dashboard-view container">
+            <h2>Settings</h2>
+            <div class="glass-panel">
+                <h3>Profile</h3>
+                <form id="profile-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="profile-fullname">
+                    </div>
+                    <div class="form-group">
+                        <label>Bio</label>
+                        <textarea id="profile-bio"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Update</button>
+                </form>
+                <hr style="border-color:rgba(255,255,255,0.1); margin:1rem 0;">
+                <h3>Upgrade to Premium</h3>
+                <button class="glowing-button" id="pay-simple">Simple Plan (₦1,500)</button>
+                <button class="glowing-button" id="pay-premium">Premium Plan (₦16,500)</button>
+            </div>
+            <!-- Admin panel (injected by JS if admin) -->
+            <div id="admin-panel" style="margin-top:2rem; display:none;"></div>
+        </section>
+
+        <!-- VAULT ITEM MODAL -->
+        <div id="item-modal" class="modal">
+            <div class="modal-content glass-panel">
+                <span class="close" id="modal-close">&times;</span>
+                <h3 id="modal-title">New Vault Item</h3>
+                <form id="item-form">
+                    <input type="hidden" id="item-id">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="item-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="item-description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select id="item-type" onchange="toggleTypeFields()">
+                            <option value="idea">Idea</option>
+                            <option value="project">Project</option>
+                            <option value="item">Item</option>
+                            <option value="document">Document</option>
+                            <option value="media">Media</option>
+                            <option value="website">Website (ZIP)</option>
+                            <option value="video">Video</option>
+                            <option value="folder">Folder</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="file-upload-group" style="display:none;">
+                        <label>Upload File</label>
+                        <input type="file" id="item-file" accept=".zip, video/*">
+                    </div>
+                    <div class="form-group" id="download-permission-group" style="display:none;">
+                        <label>Allow download?</label>
+                        <input type="checkbox" id="allow-download" checked> Yes
+                    </div>
+                    <div class="form-group">
+                        <label>Visibility</label>
+                        <select id="item-visibility">
+                            <option value="private">Private</option>
+                            <option value="public">Public</option>
+                            <option value="collaboration">Collaboration</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Content (optional, for text)</label>
+                        <textarea id="item-content" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="glowing-button">Save</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Password confirmation modal for delete -->
+        <div id="password-modal" class="modal">
+            <div class="modal-content glass-panel">
+                <span class="close" id="password-close">&times;</span>
+                <h3>Confirm Delete</h3>
+                <p>Enter your password to delete this item:</p>
+                <input type="password" id="delete-password" placeholder="Password" style="width:100%; padding:0.5rem; margin-bottom:1rem;">
+                <button id="confirm-delete" class="glowing-button">Delete</button>
+            </div>
+        </div>
+
+        <!-- COOKIE BANNER -->
+        <div id="cookie-banner" class="cookie-banner">
+            <p>We use cookies to enhance your experience. By continuing, you agree to our <a href="#" id="show-terms">Terms</a> and <a href="#" id="show-privacy">Privacy Policy</a>.</p>
+            <button id="accept-cookies">Accept</button>
+        </div>
+
+        <!-- TERMS MODAL -->
+        <div id="terms-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="close-terms">&times;</span>
+                <h2>Terms of Service</h2>
+                <p>Last updated: 2026</p>
+                <p>1. Acceptance of Terms: By accessing MYTREZURI, you agree to be bound by these terms.</p>
+                <p>2. Use License: Permission is granted to temporarily use the platform for personal, non-commercial transitory viewing only.</p>
+                <p>3. Disclaimer: The materials on MYTREZURI are provided on an 'as is' basis. We make no warranties.</p>
+                <p>4. Limitations: In no event shall we be liable for any damages arising out of the use or inability to use the platform.</p>
+                <p>5. Revisions: We may revise these terms at any time without notice.</p>
+                <p>For full terms, contact us.</p>
+            </div>
+        </div>
+
+        <!-- PRIVACY MODAL -->
+        <div id="privacy-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="close-privacy">&times;</span>
+                <h2>Privacy Policy</h2>
+                <p>Last updated: 2026</p>
+                <p>Your privacy is important to us. This policy explains how we collect, use, and protect your information.</p>
+                <p>1. Information Collection: We collect email, username, and usage data (stored locally in your browser).</p>
+                <p>2. Use of Information: To provide and improve our services, and for referral tracking.</p>
+                <p>3. Cookies: We use cookies to remember your login and preferences.</p>
+                <p>4. Data Security: We implement reasonable security measures, but no method is 100% secure.</p>
+                <p>5. Third Parties: We use Paystack for payments; their privacy policy applies.</p>
+                <p>For questions, contact: kranedigitalsystemz@gmail.com</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="glass-footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://kranedigitalhub.netlify.app" target="_blank" class="social-icon">🌐</a>
+                <a href="mailto:kranedigitalsystemz@gmail.com" class="social-icon">📧</a>
+                <a href="https://web.facebook.com/KraneDigitalHub007" target="_blank" class="social-icon">📘</a>
+                <a href="https://www.instagram.com/kranedigitalhub/" target="_blank" class="social-icon">📷</a>
+                <a href="https://x.com/KraneDigitalHub" target="_blank" class="social-icon">🐦</a>
+                <a href="https://youtube.com/@kranedigitalhub" target="_blank" class="social-icon">📺</a>
+                <a href="https://wa.me/2348104727681" target="_blank" class="social-icon">💬</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 MYTREZURI. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#" id="footer-terms">Terms</a> | 
+                <a href="#" id="footer-privacy">Privacy</a>
+            </div>
+            <div class="powered">Powered by <a href="https://kranedigital-hub.netlify.app" target="_blank" style="color: var(--digital-gold); text-decoration: none;">Krane Digital Inc</a></div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

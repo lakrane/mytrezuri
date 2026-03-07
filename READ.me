@@ -1,0 +1,48 @@
+# MYTREZURI – Digital Treasure Platform
+
+**Store Value. Share Ideas. Grow Wealth.**
+
+MYTREZURI is a hyper‑hybrid digital treasure vault where you can store ideas, manage tasks, collaborate, earn referral points, and upgrade with Paystack.
+
+## Features
+
+- 🔐 User authentication (simulated with localStorage)
+- 🏦 Personal vault with private/public/collaboration items
+- 🔗 Referral system with unique links and points
+- 💰 Paystack payments for premium upgrades
+- 🤖 AI assistant (simulated keyword responses)
+- ✅ Productivity tools: tasks, goals, reminders
+- 🤝 Collaboration marketplace with likes & comments
+- 🔔 Notifications
+- 🎨 Futuristic metallic UI with glassmorphism
+
+## How to Run Locally
+
+1. Download the `index.html` file.
+2. Open it in any modern web browser.
+3. All data is stored in your browser's `localStorage`. No server required.
+
+## Deployment to Netlify
+
+1. Push the `index.html` (and any other assets) to a GitHub repository.
+2. Connect the repository to Netlify.
+3. Deploy – it's a static site.
+
+## Paystack Integration
+
+The public key is already included (`pk_live_e9187cf2e8bd15a5e1dad8dc105e0f5e72b05594`). For production, you should verify payments on your backend (using a serverless function). This demo simulates successful payment.
+
+## Referral System
+
+Each user gets a unique referral link: `?ref=username`. When someone clicks and registers, the referrer earns 10 points. Clicks are tracked in localStorage.
+
+## Future Enhancements
+
+- Add a real backend (Node.js + PostgreSQL) for multi‑user sync.
+- Implement proper authentication with password hashing.
+- Use a real AI API (OpenAI) for TREZURI AI.
+- Add file uploads via Cloudinary.
+
+---
+
+**Powered by Krane Digital Inc**
