@@ -1,0 +1,144 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  password     String
+  username     String    @unique
+  fullName     String?
+  bio          String?   @default("")
+  referralCode String    @unique
+  referredBy   String?
+  points       Int       @default(0)
+  role         String    @default("user") // user, premium, admin
+  avatarUrl    String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  vaultItems   VaultItem[]
+  tasks        Task[]
+  goals        Goal[]
+  reminders    Reminder[]
+  notifications Notification[]
+  sentCollaborations   Collaboration[] @relation("Initiator")
+  receivedCollaborations Collaboration[] @relation("Participant")
+  payments      Payment[]
+  referralClicks ReferralClick[]
+}
+
+model VaultItem {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  type        String   // idea, project, item, document, media, website, video, folder
+  visibility  String   @default("private")
+  content     String?  // text content
+  fileUrl     String?  // Cloudinary URL
+  fileName    String?
+  fileType    String?
+  allowDownload Boolean @default(false)
+  children    Json?    // for folder structure
+  likes       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  comments    Comment[]
+  collaborations Collaboration[]
+}
+
+model Comment {
+  id          String   @id @default(cuid())
+  content     String
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  itemId      String
+  item        VaultItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+}
+
+model Collaboration {
+  id            String   @id @default(cuid())
+  itemId        String
+  item          VaultItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  initiatorId   String
+  initiator     User     @relation("Initiator", fields: [initiatorId], references: [id])
+  participantId String
+  participant   User     @relation("Participant", fields: [participantId], references: [id])
+  status        String   @default("pending") // pending, accepted, declined
+  createdAt     DateTime @default(now())
+}
+
+model ReferralClick {
+  id            String   @id @default(cuid())
+  referralCode  String
+  ipAddress     String?
+  userAgent     String?
+  clickedAt     DateTime @default(now())
+  converted     Boolean  @default(false)
+  convertedUserId String?
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  dueDate     DateTime?
+  completed   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model Goal {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  targetValue Float?
+  currentValue Float?  @default(0)
+  deadline    DateTime?
+  category    String   // daily, weekly, monthly, yearly
+  createdAt   DateTime @default(now())
+}
+
+model Reminder {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  remindAt    DateTime
+  createdAt   DateTime @default(now())
+}
+
+model Payment {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  amount    Float
+  currency  String   @default("NGN")
+  status    String   // pending, success, failed
+  reference String   @unique
+  plan      String?
+  createdAt DateTime @default(now())
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String   // referral, collaboration, payment, reminder, vault
+  message   String
+  isRead    Boolean  @default(false)
+  link      String?
+  createdAt DateTime @default(now())
+}
