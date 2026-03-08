@@ -1,10 +1,10 @@
 {
   "name": "mytrezuri",
   "version": "1.0.0",
-  "description": "MYTREZURI full‑stack application",
+  "description": "MYTREZURI backend",
   "main": "index.js",
   "scripts": {
-    "build": "echo 'No build step needed'"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.0.0",
@@ -16,8 +16,3 @@
     "prisma": "^5.0.0"
   }
 }
-
-"scripts": {
-  "postinstall": "prisma generate"
-}
-
