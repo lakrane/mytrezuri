@@ -12,50 +12,50 @@ model User {
   email        String    @unique
   password     String
   username     String    @unique
-  fullName     String?
+  fullName     String?   @map("full_name")
   bio          String?   @default("")
-  referralCode String    @unique
-  referredBy   String?
+  referralCode String    @unique @map("referral_code")
+  referredBy   String?   @map("referred_by")
   points       Int       @default(0)
   role         String    @default("user")
-  avatarUrl    String?
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  avatarUrl    String?   @map("avatar_url")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
 
-  vaultItems   VaultItem[]
-  tasks        Task[]
-  goals        Goal[]
-  reminders    Reminder[]
-  notifications Notification[]
-  sentCollaborations   Collaboration[] @relation("Initiator")
+  vaultItems          VaultItem[]
+  tasks               Task[]
+  goals               Goal[]
+  reminders           Reminder[]
+  notifications       Notification[]
+  sentCollaborations  Collaboration[] @relation("Initiator")
   receivedCollaborations Collaboration[] @relation("Participant")
-  payments      Payment[]
-  referralClicks ReferralClick[]
-  comments      Comment[] // <-- added to satisfy Comment.user relation
+  payments            Payment[]
+  referralClicks      ReferralClick[]
+  comments            Comment[]
 
   @@map("users")
 }
 
 model VaultItem {
   id          String   @id @default(cuid())
-  userId      String
+  userId      String   @map("user_id")
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   title       String
   description String?
   type        String
   visibility  String   @default("private")
   content     String?
-  fileUrl     String?
-  fileName    String?
-  fileType    String?
-  allowDownload Boolean @default(false)
+  fileUrl     String?  @map("file_url")
+  fileName    String?  @map("file_name")
+  fileType    String?  @map("file_type")
+  allowDownload Boolean @default(false) @map("allow_download")
   children    Json?
   likes       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
-  comments    Comment[]
-  collaborations Collaboration[]
+  comments        Comment[]
+  collaborations  Collaboration[]
 
   @@map("vault_items")
 }
@@ -63,104 +63,104 @@ model VaultItem {
 model Comment {
   id        String   @id @default(cuid())
   content   String
-  userId    String
+  userId    String   @map("user_id")
   user      User     @relation(fields: [userId], references: [id])
-  itemId    String
+  itemId    String   @map("item_id")
   item      VaultItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
 
   @@map("comments")
 }
 
 model Collaboration {
   id            String   @id @default(cuid())
-  itemId        String
+  itemId        String   @map("item_id")
   item          VaultItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
-  initiatorId   String
+  initiatorId   String   @map("initiator_id")
   initiator     User     @relation("Initiator", fields: [initiatorId], references: [id])
-  participantId String
+  participantId String   @map("participant_id")
   participant   User     @relation("Participant", fields: [participantId], references: [id])
   status        String   @default("pending")
-  createdAt     DateTime @default(now())
+  createdAt     DateTime @default(now()) @map("created_at")
 
   @@map("collaborations")
 }
 
 model ReferralClick {
   id            String   @id @default(cuid())
-  referralCode  String
-  ipAddress     String?
-  userAgent     String?
-  clickedAt     DateTime @default(now())
+  referralCode  String   @map("referral_code")
+  ipAddress     String?  @map("ip_address")
+  userAgent     String?  @map("user_agent")
+  clickedAt     DateTime @default(now()) @map("clicked_at")
   converted     Boolean  @default(false)
-  convertedUserId String?
-  user          User?    @relation(fields: [convertedUserId], references: [id]) // optional, links to the new user if converted
+  convertedUserId String? @map("converted_user_id")
+  user          User?    @relation(fields: [convertedUserId], references: [id])
 
   @@map("referral_clicks")
 }
 
 model Task {
   id          String   @id @default(cuid())
-  userId      String
+  userId      String   @map("user_id")
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   title       String
   description String?
-  dueDate     DateTime?
+  dueDate     DateTime? @map("due_date")
   completed   Boolean  @default(false)
-  createdAt   DateTime @default(now())
+  createdAt   DateTime @default(now()) @map("created_at")
 
   @@map("tasks")
 }
 
 model Goal {
   id          String   @id @default(cuid())
-  userId      String
+  userId      String   @map("user_id")
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   title       String
-  targetValue Float?
-  currentValue Float?  @default(0)
+  targetValue Float?   @map("target_value")
+  currentValue Float?  @default(0) @map("current_value")
   deadline    DateTime?
   category    String
-  createdAt   DateTime @default(now())
+  createdAt   DateTime @default(now()) @map("created_at")
 
   @@map("goals")
 }
 
 model Reminder {
   id          String   @id @default(cuid())
-  userId      String
+  userId      String   @map("user_id")
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   title       String
   description String?
-  remindAt    DateTime
-  createdAt   DateTime @default(now())
+  remindAt    DateTime @map("remind_at")
+  createdAt   DateTime @default(now()) @map("created_at")
 
   @@map("reminders")
 }
 
 model Payment {
   id        String   @id @default(cuid())
-  userId    String
+  userId    String   @map("user_id")
   user      User     @relation(fields: [userId], references: [id])
   amount    Float
   currency  String   @default("NGN")
   status    String
   reference String   @unique
   plan      String?
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
 
   @@map("payments")
 }
 
 model Notification {
   id        String   @id @default(cuid())
-  userId    String
+  userId    String   @map("user_id")
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   type      String
   message   String
-  isRead    Boolean  @default(false)
+  isRead    Boolean  @default(false) @map("is_read")
   link      String?
-  createdAt DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
 
   @@map("notifications")
 }
