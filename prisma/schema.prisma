@@ -31,6 +31,7 @@ model User {
   receivedCollaborations Collaboration[] @relation("Participant")
   payments      Payment[]
   referralClicks ReferralClick[]
+  comments      Comment[] // <-- added to satisfy Comment.user relation
 
   @@map("users")
 }
@@ -60,13 +61,13 @@ model VaultItem {
 }
 
 model Comment {
-  id          String   @id @default(cuid())
-  content     String
-  userId      String
-  user        User     @relation(fields: [userId], references: [id])
-  itemId      String
-  item        VaultItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
-  createdAt   DateTime @default(now())
+  id        String   @id @default(cuid())
+  content   String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  itemId    String
+  item      VaultItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
 
   @@map("comments")
 }
@@ -93,6 +94,7 @@ model ReferralClick {
   clickedAt     DateTime @default(now())
   converted     Boolean  @default(false)
   convertedUserId String?
+  user          User?    @relation(fields: [convertedUserId], references: [id]) // optional, links to the new user if converted
 
   @@map("referral_clicks")
 }
