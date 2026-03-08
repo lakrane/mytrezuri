@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User {
-  id           String    @id @default(cuid())
+  id           String    @id @default(uuid())
   email        String    @unique
   password     String
   username     String    @unique
@@ -37,7 +37,7 @@ model User {
 }
 
 model VaultItem {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   userId      String   @map("user_id")
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   title       String
@@ -61,7 +61,7 @@ model VaultItem {
 }
 
 model Comment {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   content   String
   userId    String   @map("user_id")
   user      User     @relation(fields: [userId], references: [id])
@@ -73,7 +73,7 @@ model Comment {
 }
 
 model Collaboration {
-  id            String   @id @default(cuid())
+  id            String   @id @default(uuid())
   itemId        String   @map("item_id")
   item          VaultItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
   initiatorId   String   @map("initiator_id")
@@ -87,7 +87,7 @@ model Collaboration {
 }
 
 model ReferralClick {
-  id            String   @id @default(cuid())
+  id            String   @id @default(uuid())
   referralCode  String   @map("referral_code")
   ipAddress     String?  @map("ip_address")
   userAgent     String?  @map("user_agent")
@@ -100,7 +100,7 @@ model ReferralClick {
 }
 
 model Task {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   userId      String   @map("user_id")
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   title       String
@@ -113,7 +113,7 @@ model Task {
 }
 
 model Goal {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   userId      String   @map("user_id")
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   title       String
@@ -127,7 +127,7 @@ model Goal {
 }
 
 model Reminder {
-  id          String   @id @default(cuid())
+  id          String   @id @default(uuid())
   userId      String   @map("user_id")
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   title       String
@@ -139,7 +139,7 @@ model Reminder {
 }
 
 model Payment {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   userId    String   @map("user_id")
   user      User     @relation(fields: [userId], references: [id])
   amount    Float
@@ -153,7 +153,7 @@ model Payment {
 }
 
 model Notification {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   userId    String   @map("user_id")
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   type      String
