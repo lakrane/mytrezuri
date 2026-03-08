@@ -27,168 +27,138 @@ model User {
   goals        Goal[]
   reminders    Reminder[]
   notifications Notification[]
-
-  comments Comment[]
-
-  sentCollaborations     Collaboration[] @relation("Initiator")
+  sentCollaborations   Collaboration[] @relation("Initiator")
   receivedCollaborations Collaboration[] @relation("Participant")
-
-  payments Payment[]
-
+  payments      Payment[]
   referralClicks ReferralClick[]
-  referredUsers  ReferralClick[] @relation("ReferralConversion")
+
+  @@map("users")
 }
 
 model VaultItem {
   id          String   @id @default(cuid())
   userId      String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   title       String
   description String?
   type        String
   visibility  String   @default("private")
-
   content     String?
   fileUrl     String?
   fileName    String?
   fileType    String?
-
   allowDownload Boolean @default(false)
-  children      Json?
-
+  children    Json?
   likes       Int      @default(0)
-
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  comments       Comment[]
+  comments    Comment[]
   collaborations Collaboration[]
+
+  @@map("vault_items")
 }
 
 model Comment {
-  id        String   @id @default(cuid())
-  content   String
+  id          String   @id @default(cuid())
+  content     String
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  itemId      String
+  item        VaultItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
 
-  userId String
-  user   User @relation(fields: [userId], references: [id])
-
-  itemId String
-  item   VaultItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
+  @@map("comments")
 }
 
 model Collaboration {
   id            String   @id @default(cuid())
-
   itemId        String
   item          VaultItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
-
   initiatorId   String
   initiator     User     @relation("Initiator", fields: [initiatorId], references: [id])
-
   participantId String
   participant   User     @relation("Participant", fields: [participantId], references: [id])
-
   status        String   @default("pending")
-
   createdAt     DateTime @default(now())
+
+  @@map("collaborations")
 }
 
 model ReferralClick {
-  id           String   @id @default(cuid())
-  referralCode String
-
-  ipAddress    String?
-  userAgent    String?
-
-  clickedAt    DateTime @default(now())
-
-  converted    Boolean  @default(false)
-
-  userId String?
-  user   User? @relation(fields: [userId], references: [id])
-
+  id            String   @id @default(cuid())
+  referralCode  String
+  ipAddress     String?
+  userAgent     String?
+  clickedAt     DateTime @default(now())
+  converted     Boolean  @default(false)
   convertedUserId String?
-  convertedUser   User? @relation("ReferralConversion", fields: [convertedUserId], references: [id])
+
+  @@map("referral_clicks")
 }
 
 model Task {
   id          String   @id @default(cuid())
-
   userId      String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   title       String
   description String?
   dueDate     DateTime?
-
   completed   Boolean  @default(false)
-
   createdAt   DateTime @default(now())
+
+  @@map("tasks")
 }
 
 model Goal {
-  id           String   @id @default(cuid())
-
-  userId       String
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  title        String
-
-  targetValue  Float?
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  targetValue Float?
   currentValue Float?  @default(0)
+  deadline    DateTime?
+  category    String
+  createdAt   DateTime @default(now())
 
-  deadline     DateTime?
-
-  category     String
-
-  createdAt    DateTime @default(now())
+  @@map("goals")
 }
 
 model Reminder {
   id          String   @id @default(cuid())
-
   userId      String
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   title       String
   description String?
-
   remindAt    DateTime
-
   createdAt   DateTime @default(now())
+
+  @@map("reminders")
 }
 
 model Payment {
   id        String   @id @default(cuid())
-
   userId    String
   user      User     @relation(fields: [userId], references: [id])
-
   amount    Float
   currency  String   @default("NGN")
-
   status    String
-
   reference String   @unique
   plan      String?
-
   createdAt DateTime @default(now())
+
+  @@map("payments")
 }
 
 model Notification {
   id        String   @id @default(cuid())
-
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
   type      String
   message   String
-
   isRead    Boolean  @default(false)
   link      String?
-
   createdAt DateTime @default(now())
+
+  @@map("notifications")
 }
